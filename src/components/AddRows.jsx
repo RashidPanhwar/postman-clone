@@ -1,28 +1,6 @@
 import React, {useState} from 'react'
 
-// Material UI
-import {TableRow, TableCell, Checkbox, TextField} from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { root } from 'postcss'
-
-const useStyle = makeStyles({
-    tableCell: {
-        border: '1px solid rgba(224, 224, 224, 1)',
-        borderCollapse: 'collapse',
-        padding: ['7px 5px', '!important']
-    },
-    checkBox: {
-        padding: ['2px 5px', '!important']
-    },
-    textField: {
-        width: '100%',
-        outline: ['none', '!important'],
-        
-    }
-})
-
 const AddRows = ({addRow, rowId, data, setData}) => {
-    const classes = useStyle()
 
     const [isChecked, setIsChecked] = useState(false)
     const onChecked = (e) => {
@@ -61,35 +39,38 @@ const AddRows = ({addRow, rowId, data, setData}) => {
         }
         console.log(data)
     }
-  return (
-    <TableRow>
-        <TableCell className={classes.tableCell} >
-            <Checkbox 
-                checked={isChecked}
-                size='small'
-                className={classes.checkBox}
-                onChange={(e) => onChecked(e)}
-                name={rowId}
-            />
-        </TableCell>
-        <TableCell className={classes.tableCell} >
-            <TextField 
-                inputProps={{ style: { height: 30, padding: '0 5px' } }} 
-                className={`${classes.textField}`}
-                onChange={(e) => onTextChange(e)}
-                name='key'
-            />
-        </TableCell>
-        <TableCell className={classes.tableCell} >
-            <TextField 
-                inputProps={{ style: { height: 30, padding: '0 5px' } }} 
-                className={`${classes.textField}`} 
-                onChange={(e) => onTextChange(e)}
-                name='value'
-            />
-        </TableCell>
-    </TableRow>
-  )
+
+return (
+    <tr className="w-full">
+        <td className='border-2 border-collapse py-2 px-1'>
+        <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => onChecked(e)}
+            name={rowId}
+            className="py-1 px-2"
+          />
+        </td>
+        <td className='border-2 border-collapse py-2 px-1'>
+        <input
+            type="text"
+            placeholder="Key"
+            onChange={(e) => onTextChange(e)}
+            className='w-full outline-none border-2 py-1 px-2'
+            name='key'
+          />
+        </td>
+        <td className='border-2 border-collapse py-2 px-1'>
+        <input
+            type="text"
+            placeholder="Value"
+            onChange={(e) => onTextChange(e)}
+            className='w-full outline-none border-2 py-1 px-2'
+            name='value'
+          />
+        </td>
+    </tr>
+  );
 }
 
 export default AddRows

@@ -8,15 +8,6 @@ const checkValidJson = (text) => {
     }
 }
 
-// const checkValidJson = (text) => {
-//     try {
-//         JSON.parse(text);
-//         return true;
-//     } catch (error) {
-//         return false;
-//     }
-// }
-
 export const checkParams = (paramData, headerData, jsonText, formData, setErrorMsg) => {
     if(!formData.url){
         setErrorMsg("Request url is empty")

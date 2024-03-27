@@ -8,7 +8,7 @@ const DataProvider = ({children}) => {
     const [formData, setFormData] = useState({url: '', type: 'POST'})
     const [paramData, setParamData] = useState([]);
     const [headerData, setHeaderData] = useState([]);
-    const [jsonText, setJsonText] = useState('')
+    const [jsonText, setJsonText] = useState('');
 
   return (
     <DataContext.Provider value={{

@@ -1,48 +1,24 @@
 import React from 'react'
 
-// Material UI
-import { Box, Typography, TextareaAutosize } from '@mui/material'
+const Response = ({ data, reqTime, reqStatus, reqLength }) => {
 
-
-
-const  textAreaStyle = {
-  width: '100%',
-  padding: '10px',
-  background: `url(http://i.imgur.com/2cOaJ.png)`,
-  backgroundAttachment: 'local',
-  backgroundRepeat: 'no-repeat',
-  border: '1px solid rgba(224, 224, 224, 1)',
-  paddingLeft: 35,
-  paddingTop: 10,
-  fontSize: 12,
-  borderColor: '#ccc'
-  
-}
-
-const Response = ({ data }) => {
-
-  let obj = data;
-  let readAbleObj = '{\n';
-  for(let key in obj){
-    readAbleObj += '\t'
-    readAbleObj += (typeof obj[key] ===  'string') ? `${key}: "${obj[key]}"` : `${key}: "${obj[key]}"` 
-    if(Object.keys(obj).pop() !== key.toString()){
-      readAbleObj += ',\n' 
-    }
-  }
-  readAbleObj += '\n}'
+  const readableObj = JSON.stringify(data, null, 2);
 
   return (
-    <Box>
-      <Typography mt={2} mb={2} className={`text-lg`}> Response </Typography>
-      <TextareaAutosize
-          minRows={3}
-          maxRows={5}
-          style={textAreaStyle}
-          disabled='disabled'
-          value={readAbleObj}
-        />
-    </Box>
+    <div className="flex flex-col mt-5">
+      <div className="mb-1">Response</div>
+      <div className='flex gap-5'>
+          <p>Status : {reqStatus} </p>
+          <p>time : {reqTime} </p>
+          <p>Length : {reqLength} </p>
+      </div>
+      <textarea
+        className="h-40 resize-y p-2 border-2"
+        placeholder="Response text..."
+        disabled='disabled'
+        value={readableObj}
+      />
+    </div>
   )
 }
 
